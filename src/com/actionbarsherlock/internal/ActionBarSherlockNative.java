@@ -8,6 +8,7 @@ import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
+
 import com.actionbarsherlock.ActionBarSherlock;
 import com.actionbarsherlock.BuildConfig;
 import com.actionbarsherlock.app.ActionBar;
@@ -48,6 +49,8 @@ public class ActionBarSherlockNative extends ActionBarSherlock {
         if (BuildConfig.DEBUG) Log.d(TAG, "[dispatchInvalidateOptionsMenu]");
 
         mActivity.getWindow().invalidatePanelMenu(Window.FEATURE_OPTIONS_PANEL);
+        
+        if (mMenu != null) { mMenu.invalidate(); }
     }
 
     @Override
@@ -289,6 +292,7 @@ public class ActionBarSherlockNative extends ActionBarSherlock {
         @Override
         public void invalidate() {
             mActionMode.invalidate();
+            if (mMenu != null) { mMenu.invalidate(); }
         }
 
         @Override

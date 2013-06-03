@@ -3,7 +3,7 @@
     <style name="SherlockTheme" parent="@style/Theme.Sherlock">
         <item name="horizontalPadding">6dip</item>
     </style>
-    <style name="SherlockDialog" parent="@style/Theme.Sherlock.Dialog">
+    <style name="SherlockDialog" parent="@style/Theme.Sherlock">
         <item name="horizontalPadding">6dip</item>
     </style>
     <style name="Scroller">

@@ -1,10 +1,6 @@
 package com.androzic.plugin.locationshare;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,14 +11,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.StatusLine;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -59,6 +47,7 @@ import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.androzic.data.LocRep;
 import com.androzic.data.Situation;
 import com.androzic.location.BaseLocationService;
 import com.androzic.location.ILocationCallback;
@@ -66,6 +55,9 @@ import com.androzic.location.ILocationRemoteService;
 import com.androzic.provider.DataContract;
 import com.androzic.provider.PreferencesContract;
 import com.androzic.util.StringFormatter;
+import com.google.gson.Gson;
+import com.parse.Parse;
+import com.parse.ParsePush;
 
 public class SharingService extends Service implements OnSharedPreferenceChangeListener
 {
@@ -112,6 +104,8 @@ public class SharingService extends Service implements OnSharedPreferenceChangeL
 	public void onCreate()
 	{
 		super.onCreate();
+
+		Parse.initialize(this, "GFkfk3rwmiBmuXWrA39xq8h7Phvc9ThUSLGc97c5", "OkWz5Pm0z6xOwLn2ZnanYGueAId8syU1fFcaA6ys");
 
 		// Prepare notification components
 		notification = new Notification();
@@ -236,28 +230,24 @@ public class SharingService extends Service implements OnSharedPreferenceChangeL
 
 		executorThread.getQueue().poll();
 		executorThread.execute(new Runnable() {
-			public void run()
-			{
+			public void run() {
 				Log.d(TAG, "updateSituation");
-				URI URL;
 				boolean updated = false;
-				try
-				{
-					String query = null;
-					synchronized (currentLocation)
-					{
-						query = "session=" + URLEncoder.encode(session) + ";user=" + URLEncoder.encode(user) + ";lat=" + currentLocation.getLatitude() + ";lon=" + currentLocation.getLongitude()
-								+ ";track=" + currentLocation.getBearing() + ";speed=" + currentLocation.getSpeed() + ";ftime=" + currentLocation.getTime();
-					}
-					URL = new URI("http", null, url, 80, "/cgi-bin/loc.cgi", query, null);
+				try {
+					LocRep rep = createRep();
 
-					HttpClient httpclient = new DefaultHttpClient();
-					HttpResponse response = httpclient.execute(new HttpGet(URL));
+					Gson gson = new Gson();
+					String json = gson.toJson(rep);
+					JSONObject data = new JSONObject(json);
+
+					ParsePush push = new ParsePush();
+					push.setData(data);
+					push.sendInBackground();
+					
 					notification.icon = R.drawable.ic_stat_sharing_in;
 					nm.notify(NOTIFICATION_ID, notification);
-					StatusLine statusLine = response.getStatusLine();
-					if (statusLine.getStatusCode() == HttpStatus.SC_OK)
-					{
+					/*receive:
+					if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
 						ByteArrayOutputStream out = new ByteArrayOutputStream();
 						response.getEntity().writeTo(out);
 						out.close();
@@ -265,65 +255,23 @@ public class SharingService extends Service implements OnSharedPreferenceChangeL
 						JSONObject sts = new JSONObject(responseString);
 						JSONArray entries = sts.getJSONArray("users");
 
-						for (int i = 0; i < entries.length(); i++)
-						{
+						for (int i = 0; i < entries.length(); i++) {
 							JSONObject situation = entries.getJSONObject(i);
-							String name = situation.getString("user");
-							if (name.equals(user))
-								continue;
-							synchronized (situations)
-							{
-								Situation s = situations.get(name);
-								if (s == null)
-								{
-									s = new Situation(name);
-									situations.put(name, s);
-									synchronized (situationList)
-									{
-										situationList.add(s);
-									}
-								}
-								s.latitude = situation.getDouble("lat");
-								s.longitude = situation.getDouble("lon");
-								s.speed = situation.getDouble("speed");
-								s.track = situation.getDouble("track");
-								s.time = situation.getLong("ftime");
-							}
+							receiveLocRep(situation);
 						}
 						updated = true;
-					}
-					else
-					{
+					} else {
 						response.getEntity().getContent().close();
 						throw new IOException(statusLine.getReasonPhrase());
 					}
-				}
-				catch (URISyntaxException e)
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				catch (ClientProtocolException e)
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				catch (IOException e)
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				catch (JSONException e)
-				{
-					// TODO Auto-generated catch block
+					*/
+				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 
-				synchronized (situations)
-				{
+				synchronized (situations) {
 					long curTime = System.currentTimeMillis() - timeCorrection;
-					for (Situation situation : situations.values())
-					{
+					for (Situation situation : situations.values()) {
 						situation.silent = situation.time + timeoutInterval < curTime;
 					}
 				}
@@ -331,23 +279,57 @@ public class SharingService extends Service implements OnSharedPreferenceChangeL
 				if (updated)
 					sendBroadcast(new Intent(BROADCAST_SITUATION_CHANGED));
 
-				try
-				{
+				try {
 					sendMapObjects();
-				}
-				catch (RemoteException e)
-				{
-					// TODO Auto-generated catch block
+				} catch (RemoteException e) {
 					e.printStackTrace();
 				}
 
-				if (notification != null)
-				{
+				if (notification != null) {
 					notification.icon = R.drawable.ic_stat_sharing;
 					nm.notify(NOTIFICATION_ID, notification);
 				}
 			}
+
+			private void receiveLocRep(JSONObject situation) throws JSONException {
+				String name = situation.getString("user");
+				if (name.equals(user))
+					return;
+				synchronized (situations)
+				{
+					Situation s = situations.get(name);
+					if (s == null)
+					{
+						s = new Situation(name);
+						situations.put(name, s);
+						synchronized (situationList)
+						{
+							situationList.add(s);
+						}
+					}
+					s.latitude = situation.getDouble("lat");
+					s.longitude = situation.getDouble("lon");
+					s.speed = situation.getDouble("speed");
+					s.track = situation.getDouble("track");
+					s.time = situation.getLong("ftime");
+				}
+			}
 		});
+	}
+
+	protected LocRep createRep() {
+		synchronized (currentLocation)
+		{					
+			LocRep rep = new LocRep();
+			rep.session = session;
+			rep.user = user;
+			rep.lat = currentLocation.getLatitude();
+			rep.lon = currentLocation.getLongitude();
+			rep.bearing = currentLocation.getBearing();
+			rep.speed = currentLocation.getSpeed();
+			rep.time = currentLocation.getTime();
+			return rep;
+		}
 	}
 
 	protected void sendNewSituationNotification(Situation situation)
@@ -689,9 +671,11 @@ public class SharingService extends Service implements OnSharedPreferenceChangeL
 			timeoutInterval = sharedPreferences.getInt(key, getResources().getInteger(R.integer.def_sharing_timeout)) * 60000;
 		}
 
-		if (!session.equals(oldsession) || !user.equals(olduser) || !url.equals(oldurl))
-		{
-			clearSituations();
+		if(session != null && user!=null && url!=null) {
+			if (!session.equals(oldsession) || !user.equals(olduser) || !url.equals(oldurl))
+			{
+				clearSituations();
+			}
 		}
 		if ((session != null && session.trim().equals("")) || (user != null && user.trim().equals("")))
 			stopSelf();

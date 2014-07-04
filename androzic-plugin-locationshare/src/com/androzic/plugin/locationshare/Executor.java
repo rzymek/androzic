@@ -14,6 +14,7 @@ public class Executor extends BroadcastReceiver
 		if (action.equals("com.androzic.plugins.action.INITIALIZE"))
 		{
 			PreferenceManager.setDefaultValues(context, R.xml.preferences, true);
+			context.startService(new Intent(context, SharingService.class));
 		}
 		else if (action.equals("com.androzic.plugins.action.FINALIZE"))
 		{

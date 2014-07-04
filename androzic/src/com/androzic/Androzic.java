@@ -977,7 +977,6 @@ public class Androzic extends BaseApplication
 		{
 			setMapCenter(0, 0, true, true);
 		}
-		setMapCenter(52, 21, true, true);//NOCOMMIT rzymek: remove this
 	}
 	
 	public double[] getMapCenter()

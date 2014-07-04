@@ -22,9 +22,11 @@ public class ArsMap extends OnlineMap {
 	public boolean drawMap(double[] loc, int[] lookAhead, int width, int height, boolean cropBorder, boolean drawBorder, Canvas c) throws OutOfMemoryError {
 		LatLon center = new LatLon(loc[0], loc[1]);
 		com.androzic.map.online.geoportal.Position position = grid.getTilePosition(center, zoom);
-		Paint paint = new Paint();
-		paint.setColor(0xffff0000);
-		c.drawLine(0, 0, width, height, paint);
+		Paint red = new Paint();
+		red.setColor(0xffff0000);
+		Paint black = new Paint();
+		black.setColor(0xff000000);
+		c.drawLine(0, 0, width, height, red);
 
 		tileCount.width = (width / width) + 1;
 		tileCount.height = (height / height) + 1;
@@ -46,8 +48,8 @@ public class ArsMap extends OnlineMap {
 					// c.drawImage(tile, xx, yy, null);
 					if (showGrid) {
 						String msg = String.format("%d %d %d", (int) tilex, (int) tiley, zoom);
-						c.drawText(msg, xx, yy + ts.height, paint);
-						c.drawRect(xx, yy, ts.width, ts.height, paint);
+						c.drawRect(xx, yy, ts.width-xx, ts.height-yy, red);
+						c.drawText(msg, xx, yy + ts.height, black);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();

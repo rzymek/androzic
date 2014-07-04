@@ -75,6 +75,7 @@ import com.androzic.location.LocationService;
 import com.androzic.map.Map;
 import com.androzic.map.MapIndex;
 import com.androzic.map.MockMap;
+import com.androzic.map.online.ArsMap;
 import com.androzic.map.online.OnlineMap;
 import com.androzic.map.online.TileProvider;
 import com.androzic.navigation.NavigationService;
@@ -976,6 +977,7 @@ public class Androzic extends BaseApplication
 		{
 			setMapCenter(0, 0, true, true);
 		}
+		setMapCenter(52, 21, true, true);//NOCOMMIT rzymek: remove this
 	}
 	
 	public double[] getMapCenter()
@@ -1311,7 +1313,7 @@ public class Androzic extends BaseApplication
 				boolean s = currentMap == onlineMap;					
 				maps.removeMap(onlineMap);
 				byte zoom = (byte) PreferenceManager.getDefaultSharedPreferences(this).getInt(getString(R.string.pref_onlinemapscale), getResources().getInteger(R.integer.def_onlinemapscale));
-				onlineMap = new OnlineMap(map, zoom);
+				onlineMap = new ArsMap(map, zoom);
 				maps.addMap(onlineMap);
 				if (s)
 					setMap(onlineMap);
@@ -1647,7 +1649,7 @@ public class Androzic extends BaseApplication
 		{
 			if (curProvider == null)
 				curProvider = onlineMaps.get(0);
-			onlineMap = new OnlineMap(curProvider, zoom);
+			onlineMap = new ArsMap(curProvider, zoom);
 			maps.addMap(onlineMap);
 		}
 		suitableMaps = maps.getMaps();

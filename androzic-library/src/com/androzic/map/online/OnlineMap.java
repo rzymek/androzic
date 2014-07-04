@@ -48,7 +48,7 @@ public class OnlineMap extends Map
 	private byte srcZoom;
 	private byte defZoom;
 	
-	public OnlineMap(TileProvider provider, byte z)
+	protected OnlineMap(TileProvider provider, byte z)
 	{
 		super("http://...");
 		datum = "WGS84";
@@ -206,7 +206,7 @@ public class OnlineMap extends Map
 		return result;
 	}
 
-	public Bitmap getTile(int x, int y) throws OutOfMemoryError
+	private Bitmap getTile(int x, int y) throws OutOfMemoryError
 	{
 		Tile tile = tileController.getTile(x, y, srcZoom);
 		return tile.bitmap;
@@ -290,27 +290,6 @@ public class OnlineMap extends Map
 		return true;
 	}
 
-	public boolean getOsmXYByLatLon(double lat, double lon, int[] xy)
-	{
-		double n = Math.pow(2.0, srcZoom);
-
-		xy[0] = (int) Math.floor((lon + 180) / 360 * n);
-		if (xy[0] == n)
-			xy[0] -= 1;
-		if (tileProvider.ellipsoid)
-		{
-			double z = Math.sin(Math.toRadians(lat));
-			xy[1] = (int) Math.floor((1 - (atanh(z)-0.0818197*atanh(0.0818197*z)) / Math.PI) / 2 * n);
-		}
-		else
-		{
-			xy[1] = (int) Math.floor((1 - Math.log(Math.tan(Math.toRadians(lat)) + 1 / Math.cos(Math.toRadians(lat))) / Math.PI) / 2 * n);
-		}
-		if (xy[1] < 0)
-			xy[1] = 0;
-		return true;
-	}
-	
 	@Override
 	public double getNextZoom()
 	{

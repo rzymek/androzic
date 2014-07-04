@@ -71,7 +71,7 @@ public class ArsMap extends OnlineMap {
 	}
 
 	private int getSrcZoom() {
-		return srcZoom - 6;
+		return srcZoom;
 	}
 
 	protected Bitmap getTile(int x, int y) throws OutOfMemoryError {
@@ -80,16 +80,30 @@ public class ArsMap extends OnlineMap {
 	}
 
 	@Override
+	public int getScaledWidth() {
+		Dimension tileCount = grid.getTileCount(getSrcZoom());
+		return (int) (tileCount.width * GeoportalTopoProvider.TILE_SIZE.width * zoom);
+	}
+
+	@Override
+	public int getScaledHeight() {
+		Dimension tileCount = grid.getTileCount(getSrcZoom());
+		return (int) (tileCount.height * GeoportalTopoProvider.TILE_SIZE.height * zoom);
+	}
+
+	@Override
 	public boolean getXYByLatLon(double lat, double lon, int[] xy) {
 		Position pos = grid.getTilePosition(new LatLon(lat, lon), getSrcZoom());
-		xy[0] = (int) pos.x;
-		xy[1] = (int) pos.y;
+		xy[0] = (int) (pos.x * GeoportalTopoProvider.TILE_SIZE.width);
+		xy[1] = (int) (pos.y * GeoportalTopoProvider.TILE_SIZE.height);
 		return true;
 	}
 
 	@Override
 	public boolean getLatLonByXY(int x, int y, double[] ll) {
-		Coordinates coords = grid.getCoords(new Position(x, y), getSrcZoom());
+		Coordinates coords = grid.getCoords(new Position(
+				x / (double)GeoportalTopoProvider.TILE_SIZE.width, 
+				y / (double)GeoportalTopoProvider.TILE_SIZE.height), getSrcZoom());
 		ll[0] = coords.getLat();
 		ll[1] = coords.getLon();
 		return true;

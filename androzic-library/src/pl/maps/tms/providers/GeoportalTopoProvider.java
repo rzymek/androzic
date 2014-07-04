@@ -9,10 +9,10 @@ public class GeoportalTopoProvider {
 	private static final long LZTS = 409600;
 	public static final long WIDTH_IN_METERS = LZTS * GRID.width;
 	public static final long HEIGHT_IN_METERS = LZTS * GRID.height;
-	private static Dimension tileSize = new Dimension(256, 256);
+	public static final Dimension TILE_SIZE = new Dimension(256, 256);
 
 	public Dimension getTileSize() {
-		return tileSize;
+		return TILE_SIZE;
 	}
 
 	public Position move(Position tile, double dx, double dy) {
@@ -41,10 +41,10 @@ public class GeoportalTopoProvider {
 
 	public Coordinates getCoords(Position position, int zoom) {
 		Dimension tileCount = getTileCount(zoom);
-		long pw = tileCount.width * tileSize.width;
-		long ph = tileCount.height * tileSize.height;
-		double px = position.x * tileSize.width;
-		double py = position.y * tileSize.height;
+		long pw = tileCount.width * TILE_SIZE.width;
+		long ph = tileCount.height * TILE_SIZE.height;
+		double px = position.x * TILE_SIZE.width;
+		double py = position.y * TILE_SIZE.height;
 		double x = WIDTH_IN_METERS * px / pw;
 		double y = HEIGHT_IN_METERS - HEIGHT_IN_METERS * py / ph;
 		return new PUWG92(x, y);

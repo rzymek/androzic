@@ -45,7 +45,7 @@ public class OnlineMap extends Map
 	private TileController tileController;
 	private TileProvider tileProvider;
 	private boolean isActive = false;
-	private byte srcZoom;
+	protected byte srcZoom;
 	private byte defZoom;
 	
 	protected OnlineMap(TileProvider provider, byte z)
@@ -206,7 +206,7 @@ public class OnlineMap extends Map
 		return result;
 	}
 
-	private Bitmap getTile(int x, int y) throws OutOfMemoryError
+	protected Bitmap getTile(int x, int y) throws OutOfMemoryError
 	{
 		Tile tile = tileController.getTile(x, y, srcZoom);
 		return tile.bitmap;

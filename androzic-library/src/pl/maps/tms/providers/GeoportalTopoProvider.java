@@ -30,7 +30,7 @@ public class GeoportalTopoProvider {
 		return p;
 	}
 
-	protected Dimension getTileCount(int zoom) {
+	public Dimension getTileCount(int zoom) {
 		int z = 2 << (zoom - 1);// 2^(z-1)
 		if (zoom <= 0)
 			z = 1;

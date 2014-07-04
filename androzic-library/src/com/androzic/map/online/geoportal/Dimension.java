@@ -1,5 +1,7 @@
 package com.androzic.map.online.geoportal;
 
+import java.util.Locale;
+
 public class Dimension {
 
 	public int width;
@@ -10,4 +12,8 @@ public class Dimension {
 		this.height = height;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("[%d,%d]", width, height, Locale.ENGLISH);
+	}
 }

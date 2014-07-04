@@ -23,6 +23,10 @@ package com.androzic.map.online;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import com.androzic.map.online.geoportal.Coordinates;
+import com.androzic.map.online.geoportal.Geoportal;
+import com.androzic.map.online.geoportal.LatLon;
+import com.androzic.map.online.geoportal.Position;
 import com.androzic.util.CSV;
 
 public class TileProvider
@@ -59,6 +63,8 @@ public class TileProvider
     	uri = uri.replace("{$y}", String.valueOf(y));
     	if (uri.contains("{$q}"))
     		uri = uri.replace("{$q}", encodeQuadTree(z, x, y));
+    	if (uri.contains("{$gp}"))
+    		uri = uri.replace("{$gp}", encodeGeoportal(z, x, y));
     	if (uri.contains("{$g}") && secret != null)
     	{
     		int stringlen = (3 * x + y) & 7;
@@ -68,6 +74,16 @@ public class TileProvider
 		return uri;
 	}
 	
+	private CharSequence encodeGeoportal(int z, int x, int y) {
+		int n = 2 << z;
+		double lon_deg = x / n * 360.0 - 180.0;
+		double lat_rad = Math.atan(Math.sinh(Math.PI * (1.0 - 2.0 * y/ n)));
+		double lat_deg = lat_rad * 180.0 / Math.PI;
+		Coordinates coordinates = new LatLon(lat_deg,lon_deg);
+		Position position = Geoportal.getTilePosition(coordinates, z);
+		return String.format("L%dX%dY%d", z, (int)position.x, (int)position.y);
+	}
+
 	public static TileProvider fromString(String s)
 	{
 		TileProvider provider = new TileProvider();

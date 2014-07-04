@@ -23,6 +23,7 @@ package com.androzic.map.online;
 import java.util.Hashtable;
 import java.util.LinkedList;
 
+import android.util.Log;
 import android.view.View;
 
 import com.androzic.map.Tile;
@@ -76,7 +77,11 @@ public class TileController extends Thread
 				{
 					synchronized (this)
 					{
-						wait();
+						try{
+							wait();
+						}catch(InterruptedException ex){
+							Log.w("TILE","Interrupted");
+						}
 					}
 					continue;
 				}

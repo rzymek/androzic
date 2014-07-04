@@ -230,7 +230,7 @@
         <item><![CDATA[NLS Topo Map (FI),nlst,4,19,,http://tiles.kartat.kapsi.fi/peruskartta/{$z}/{$x}/{$y}.png]]></item>
         <item><![CDATA[NLS Background,nlsb,4,19,,http://tiles.kartat.kapsi.fi/taustakartta/{$z}/{$x}/{$y}.png]]></item>
         <item><![CDATA[NLS Aerial (FI),nlsa,13,19,,http://tiles.kartat.kapsi.fi/ortokuva/{$z}/{$x}/{$y}.png]]></item>
-        <item><![CDATA[GeoPortal TOPO,gptopo,0,11,,http://ars.geoportal.gov.pl/ARS/getTile.aspx?service=RASTER_TOPO&cs=EPSG2180&fileIDX=L{$z}X{$x}Y{$y}.jpg]]></item>
+        <item><![CDATA[GeoPortal TOPO,gptopo,6,17,,http://ars.geoportal.gov.pl/ARS/getTile.aspx?service=RASTER_TOPO&cs=EPSG2180&fileIDX=L{$z}X{$x}Y{$y}.jpg]]></item>
     </string-array>
 
 </resources>

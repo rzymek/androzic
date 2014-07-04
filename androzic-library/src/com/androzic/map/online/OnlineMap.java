@@ -42,7 +42,7 @@ public class OnlineMap extends Map
 	public static final int TILE_WIDTH = 256;
 	public static final int TILE_HEIGHT = 256;
 	
-	private TileController tileController;
+	protected TileController tileController;
 	private TileProvider tileProvider;
 	private boolean isActive = false;
 	protected byte srcZoom;

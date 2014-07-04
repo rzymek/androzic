@@ -7,8 +7,8 @@ import com.androzic.map.online.geoportal.Position;
 public class GeoportalTopoProvider {
 	public static final Dimension GRID = new Dimension(3, 2);
 	private static final long LZTS = 409600;
-	private static final long WIDTH_IN_METERS = LZTS * GRID.width;
-	private static final long HEIGHT_IN_METERS = LZTS * GRID.height;
+	public static final long WIDTH_IN_METERS = LZTS * GRID.width;
+	public static final long HEIGHT_IN_METERS = LZTS * GRID.height;
 	private static Dimension tileSize = new Dimension(256, 256);
 
 	public Dimension getTileSize() {

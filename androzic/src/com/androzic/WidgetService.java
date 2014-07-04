@@ -20,6 +20,7 @@
 
 package com.androzic;
 
+import com.androzic.gp.R;
 import com.androzic.location.ITrackingCallback;
 import com.androzic.location.ITrackingRemoteService;
 import com.androzic.util.StringFormatter;

@@ -32,7 +32,7 @@ import android.util.Log;
 
 import com.androzic.Androzic;
 import com.androzic.MapView;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.map.Map;
 import com.androzic.map.Map.Grid;
 import com.androzic.util.Geo;

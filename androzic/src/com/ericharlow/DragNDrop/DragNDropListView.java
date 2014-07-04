@@ -1,6 +1,6 @@
 package com.ericharlow.DragNDrop;
 
-import com.androzic.R;
+import com.androzic.gp.R;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;

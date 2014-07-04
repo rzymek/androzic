@@ -20,7 +20,7 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.androzic"
+    package="com.androzic.gp"
     android:installLocation="auto" 
     android:versionCode="100"
     android:versionName="1.8-gp" >
@@ -87,7 +87,7 @@
     <uses-permission android:name="com.androzic.permission.NAVIGATION" />
 
     <application
-        android:name=".Androzic"
+        android:name="com.androzic.Androzic"
         android:allowBackup="true"
         android:backupAgent="Backup"
         android:description="@string/homepage"
@@ -96,7 +96,7 @@
         android:restoreAnyVersion="true"
         android:theme="@style/SherlockTheme" >
         <activity
-            android:name=".Splash"
+            android:name="com.androzic.Splash"
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:launchMode="singleTop" >
@@ -107,7 +107,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MapActivity"
+            android:name="com.androzic.MapActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop" >
             <meta-data
@@ -115,7 +115,7 @@
                 android:value=".SearchableActivity" />
         </activity>
         <activity
-            android:name=".ExternalActions"
+            android:name="com.androzic.ExternalActions"
             android:exported="true" >
             <intent-filter>
                 <action android:name="com.androzic.PLOT_ROUTE" />
@@ -125,7 +125,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SearchableActivity"
+            android:name="com.androzic.SearchableActivity"
             android:exported="true"
             android:label="@string/search_name"
             android:launchMode="singleTop" >
@@ -138,43 +138,43 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".HSIActivity"
+            android:name="com.androzic.HSIActivity"
             android:label="@string/hsi_name" />
         <activity
-            android:name=".Information"
+            android:name="com.androzic.Information"
             android:label="@string/information_name"
             android:theme="@style/SherlockDialog" />
         <activity
-            android:name=".Credits"
+            android:name="com.androzic.Credits"
             android:label="@string/credits_name" />
         <activity
-            android:name=".Preferences"
+            android:name="com.androzic.Preferences"
             android:label="@string/pref_name" />
-        <activity android:name=".Preferences$PluginsPreferences" />
-        <activity android:name=".Preferences$InnerPreferences" />
-        <activity android:name=".Preferences$OnlineMapPreferences" />
-        <activity android:name=".Preferences$ApplicationPreferences" />
+        <activity android:name="com.androzic.Preferences$PluginsPreferences" />
+        <activity android:name="com.androzic.Preferences$InnerPreferences" />
+        <activity android:name="com.androzic.Preferences$OnlineMapPreferences" />
+        <activity android:name="com.androzic.Preferences$ApplicationPreferences" />
         <activity
-            android:name=".PreferencesHC"
+            android:name="com.androzic.PreferencesHC"
             android:label="@string/pref_name" />
         <activity
-            android:name=".MapList"
+            android:name="com.androzic.MapList"
             android:label="@string/maplist_name"
             android:theme="@style/SherlockDialog" />
         <activity
-            android:name=".ErrorDialog"
+            android:name="com.androzic.ErrorDialog"
             android:theme="@style/SherlockDialog" />
         <activity
-            android:name=".map.MapInformation"
+            android:name="com.androzic.map.MapInformation"
             android:label="@string/mapinformation_name" />
         <activity
-            android:name=".waypoint.WaypointList"
+            android:name="com.androzic.waypoint.WaypointList"
             android:label="@string/managewaypoints_name" />
         <activity
-            android:name=".waypoint.WaypointProperties"
+            android:name="com.androzic.waypoint.WaypointProperties"
             android:label="@string/waypointproperties_name" />
         <activity
-            android:name=".ui.MarkerPickerActivity"
+            android:name="com.androzic.ui.MarkerPickerActivity"
             android:exported="true"
             android:label="@string/markericon_name"
             android:theme="@style/SherlockDialog" >
@@ -185,63 +185,63 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".waypoint.WaypointInfo"
+            android:name="com.androzic.waypoint.WaypointInfo"
             android:theme="@style/SherlockDialog" />
         <activity
-            android:name=".waypoint.WaypointProject"
+            android:name="com.androzic.waypoint.WaypointProject"
             android:label="@string/waypointproject_name"
             android:theme="@style/SherlockDialog" />
         <activity
-            android:name=".waypoint.WaypointFileList"
+            android:name="com.androzic.waypoint.WaypointFileList"
             android:label="@string/loadwaypoints_name"
             android:theme="@style/SherlockDialog" />
         <activity
-            android:name=".waypoint.CoordinatesReceived"
+            android:name="com.androzic.waypoint.CoordinatesReceived"
             android:label="@string/coordinates_name"
             android:theme="@style/SherlockDialog" />
         <activity
-            android:name=".track.TrackList"
+            android:name="com.androzic.track.TrackList"
             android:label="@string/managetracks_name" />
         <activity
-            android:name=".track.TrackProperties"
+            android:name="com.androzic.track.TrackProperties"
             android:label="@string/trackproperties_name" />
         <activity
-            android:name=".track.TrackFileList"
+            android:name="com.androzic.track.TrackFileList"
             android:label="@string/loadtrack_name"
             android:theme="@style/SherlockDialog" />
         <activity
-            android:name=".track.TrackToRoute"
+            android:name="com.androzic.track.TrackToRoute"
             android:label="@string/track2route_name" />
         <activity
-            android:name=".track.TrackSave"
+            android:name="com.androzic.track.TrackSave"
             android:label="@string/savetrack_name"
             android:theme="@style/SherlockDialog" />
         <activity
-            android:name=".route.RouteFileList"
+            android:name="com.androzic.route.RouteFileList"
             android:label="@string/loadroute_name"
             android:theme="@style/SherlockDialog" />
         <activity
-            android:name=".route.RouteStart"
+            android:name="com.androzic.route.RouteStart"
             android:theme="@style/SherlockDialog" />
         <activity
-            android:name=".route.RouteList"
+            android:name="com.androzic.route.RouteList"
             android:label="@string/manageroutes_name" />
         <activity
-            android:name=".route.RouteEdit"
+            android:name="com.androzic.route.RouteEdit"
             android:theme="@style/SherlockDialog" />
         <activity
-            android:name=".route.RouteSave"
+            android:name="com.androzic.route.RouteSave"
             android:label="@string/saveroute_name"
             android:theme="@style/SherlockDialog" />
         <activity
-            android:name=".route.RouteProperties"
+            android:name="com.androzic.route.RouteProperties"
             android:label="@string/routeproperties_name" />
         <activity
-            android:name=".route.RouteDetails"
+            android:name="com.androzic.route.RouteDetails"
             android:label="@string/routedetails_name" />
 
         <receiver
-            android:name="ActionsReceiver"
+            android:name="com.androzic.ActionsReceiver"
             android:exported="true" >
             <intent-filter>
                 <action android:name="com.androzic.COORDINATES_RECEIVED" />
@@ -251,7 +251,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".LocationWidget"
+            android:name="com.androzic.LocationWidget"
             android:icon="@drawable/icon"
             android:label="@string/widget_name" >
             <intent-filter>
@@ -264,23 +264,23 @@
         </receiver>
 
         <provider
-            android:name=".provider.PreferencesProvider"
+            android:name="com.androzic.provider.PreferencesProvider"
             android:authorities="com.androzic.PreferencesProvider"
             android:exported="true"
             android:readPermission="com.androzic.permission.READ_PREFERENCES" />
         <provider
-            android:name=".provider.DataProvider"
+            android:name="com.androzic.provider.DataProvider"
             android:authorities="com.androzic.DataProvider"
             android:exported="true"
             android:readPermission="com.androzic.permission.READ_MAP_DATA"
             android:writePermission="com.androzic.permission.WRITE_MAP_DATA" />
         <provider
-            android:name=".provider.SuggestionProvider"
+            android:name="com.androzic.provider.SuggestionProvider"
             android:authorities="com.androzic.SuggestionProvider"
             android:exported="false" />
 
         <service
-            android:name=".track.TrackingService"
+            android:name="com.androzic.track.TrackingService"
             android:exported="true"
             android:icon="@drawable/icon"
             android:permission="com.androzic.permission.RECEIVE_TRACK" >
@@ -290,7 +290,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".location.LocationService"
+            android:name="com.androzic.location.LocationService"
             android:exported="true"
             android:icon="@drawable/icon"
             android:permission="com.androzic.permission.RECEIVE_LOCATION" >
@@ -300,7 +300,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".navigation.NavigationService"
+            android:name="com.androzic.navigation.NavigationService"
             android:exported="true"
             android:icon="@drawable/icon"
             android:permission="com.androzic.permission.NAVIGATION" >
@@ -311,7 +311,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".WidgetService"
+            android:name="com.androzic.WidgetService"
             android:icon="@drawable/widget_icon"
             android:process=":widget" />
 

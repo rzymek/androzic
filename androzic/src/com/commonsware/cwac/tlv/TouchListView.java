@@ -17,7 +17,7 @@
 
 package com.commonsware.cwac.tlv;
 
-import com.androzic.R;
+import com.androzic.gp.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;

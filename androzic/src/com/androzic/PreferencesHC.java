@@ -47,6 +47,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.androzic.gp.R;
 import com.androzic.map.online.TileProvider;
 import com.androzic.ui.SeekbarPreference;
 

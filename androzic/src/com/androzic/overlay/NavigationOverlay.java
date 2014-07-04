@@ -31,7 +31,7 @@ import android.preference.PreferenceManager;
 import com.androzic.Androzic;
 import com.androzic.MapActivity;
 import com.androzic.MapView;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.data.Waypoint;
 import com.androzic.map.Map;
 import com.androzic.navigation.NavigationService;

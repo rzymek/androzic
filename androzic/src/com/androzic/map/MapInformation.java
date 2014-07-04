@@ -27,7 +27,7 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.androzic.Androzic;
-import com.androzic.R;
+import com.androzic.gp.R;
 
 public class MapInformation extends SherlockActivity
 {

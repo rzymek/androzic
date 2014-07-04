@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Androzic</string>
+    <string name="app_name">AndrozicGP</string>
     <string name="managetracks_name">Tracks</string>
     <string name="trackproperties_name">Edit track</string>
     <string name="loadtrack_name">Load track from file</string>

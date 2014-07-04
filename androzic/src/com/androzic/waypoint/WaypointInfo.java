@@ -55,7 +55,7 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.actionbarsherlock.view.Window;
 import com.androzic.Androzic;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.data.Waypoint;
 import com.androzic.util.Geo;
 import com.androzic.util.StringFormatter;

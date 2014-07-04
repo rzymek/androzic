@@ -30,7 +30,7 @@ import android.preference.PreferenceManager;
 
 import com.androzic.Androzic;
 import com.androzic.MapView;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.map.Map;
 import com.androzic.util.StringFormatter;
 

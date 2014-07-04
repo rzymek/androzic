@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" xmlns:androzic="http://schemas.android.com/apk/res/com.androzic">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" xmlns:androzic="http://schemas.android.com/apk/res/com.androzic.gp">
    	<Preference android:key="pref_behavior" android:title="@string/pref_map_title" />
    	<Preference android:key="pref_folder" android:title="@string/pref_folder_title" />
    	<Preference android:key="pref_location" android:title="@string/pref_loc_title" />

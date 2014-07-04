@@ -60,6 +60,7 @@ import com.actionbarsherlock.view.Window;
 import com.androzic.data.Route;
 import com.androzic.data.Track;
 import com.androzic.data.Waypoint;
+import com.androzic.gp.R;
 import com.androzic.provider.SuggestionProvider;
 import com.androzic.util.CoordinateParser;
 import com.androzic.util.Geo;

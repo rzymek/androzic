@@ -41,7 +41,7 @@ import android.view.MotionEvent;
 import com.androzic.Androzic;
 import com.androzic.MapActivity;
 import com.androzic.MapView;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.data.Route;
 import com.androzic.data.Waypoint;
 

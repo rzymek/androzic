@@ -1,6 +1,6 @@
 package com.androzic.ui;
 
-import com.androzic.R;
+import com.androzic.gp.R;
 
 import android.app.Activity;
 import android.content.Context;

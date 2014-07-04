@@ -62,7 +62,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.androzic.Androzic;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.data.Waypoint;
 import com.androzic.data.WaypointSet;
 import com.androzic.navigation.NavigationService;

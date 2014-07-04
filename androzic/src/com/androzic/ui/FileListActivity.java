@@ -40,7 +40,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockListActivity;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.util.FileList;
 
 public abstract class FileListActivity extends SherlockListActivity

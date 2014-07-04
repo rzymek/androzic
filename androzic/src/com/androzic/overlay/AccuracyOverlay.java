@@ -27,7 +27,7 @@ import android.graphics.Paint;
 
 import com.androzic.Androzic;
 import com.androzic.MapView;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.util.Geo;
 
 public class AccuracyOverlay extends MapOverlay

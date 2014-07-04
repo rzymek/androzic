@@ -34,7 +34,7 @@ import android.widget.SeekBar;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.androzic.Androzic;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.data.Route;
 import com.androzic.data.Track;
 import com.androzic.overlay.RouteOverlay;

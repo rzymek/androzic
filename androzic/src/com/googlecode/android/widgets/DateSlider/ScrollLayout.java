@@ -36,7 +36,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.googlecode.android.widgets.DateSlider.labeler.Labeler;
 import com.googlecode.android.widgets.DateSlider.timeview.TimeView;
 

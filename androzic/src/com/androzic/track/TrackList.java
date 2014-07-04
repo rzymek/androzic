@@ -55,7 +55,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.androzic.Androzic;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.data.Track;
 import com.androzic.overlay.TrackOverlay;
 import com.androzic.util.StringFormatter;

@@ -31,7 +31,7 @@ import android.graphics.Rect;
 
 import com.androzic.Androzic;
 import com.androzic.MapView;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.map.Map;
 import com.androzic.map.Map.Bounds;
 import com.androzic.map.Map.Grid;

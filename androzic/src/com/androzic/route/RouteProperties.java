@@ -22,7 +22,7 @@ package com.androzic.route;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.androzic.Androzic;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.data.Route;
 import com.androzic.ui.ColorButton;
 

@@ -34,7 +34,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.androzic.Androzic;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.data.Track;
 import com.androzic.util.FileUtils;
 import com.androzic.util.OziExplorerFiles;

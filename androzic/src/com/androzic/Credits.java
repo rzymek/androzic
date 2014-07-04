@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.actionbarsherlock.app.SherlockListActivity;
+import com.androzic.gp.R;
 
 import android.os.Bundle;
 import android.widget.SimpleAdapter;

@@ -25,7 +25,7 @@ import java.util.List;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.androzic.Androzic;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.data.Track;
 import com.androzic.ui.ColorButton;
 

@@ -3,7 +3,7 @@ package com.androzic.ui;
 import java.io.File;
 import java.io.FileFilter;
 
-import android.R;
+import com.androzic.gp.R;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;

@@ -28,7 +28,7 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.data.Track;
 import com.androzic.location.ILocationService;
 import com.androzic.location.ITrackingListener;

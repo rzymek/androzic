@@ -36,7 +36,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.androzic.Androzic;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.data.Track;
 import com.androzic.ui.FileListActivity;
 import com.androzic.util.GpxFiles;

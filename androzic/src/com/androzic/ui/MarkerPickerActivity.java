@@ -29,7 +29,7 @@ import java.util.List;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.androzic.Androzic;
-import com.androzic.R;
+import com.androzic.gp.R;
 
 import android.content.Context;
 import android.content.Intent;

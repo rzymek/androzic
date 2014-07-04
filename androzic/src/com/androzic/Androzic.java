@@ -71,6 +71,7 @@ import com.androzic.data.Route;
 import com.androzic.data.Track;
 import com.androzic.data.Waypoint;
 import com.androzic.data.WaypointSet;
+import com.androzic.gp.R;
 import com.androzic.location.LocationService;
 import com.androzic.map.Map;
 import com.androzic.map.MapIndex;

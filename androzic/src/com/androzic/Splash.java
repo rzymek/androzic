@@ -60,6 +60,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Window;
 import com.androzic.data.Route;
 import com.androzic.data.Track;
+import com.androzic.gp.R;
 import com.androzic.overlay.CurrentTrackOverlay;
 import com.androzic.overlay.RouteOverlay;
 import com.androzic.util.AutoloadedRouteFilenameFilter;

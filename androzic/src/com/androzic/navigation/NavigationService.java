@@ -38,7 +38,7 @@ import android.util.Log;
 import com.androzic.Androzic;
 import com.androzic.HSIActivity;
 import com.androzic.MapActivity;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.data.MapObject;
 import com.androzic.data.Route;
 import com.androzic.location.ILocationListener;

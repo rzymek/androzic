@@ -33,7 +33,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.androzic.R;
+import com.androzic.gp.R;
 
 public class PreferencesProvider extends ContentProvider
 {

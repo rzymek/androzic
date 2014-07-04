@@ -58,7 +58,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.androzic.Androzic;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.Splash;
 import com.androzic.data.Track;
 

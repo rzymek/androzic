@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" xmlns:androzic="http://schemas.android.com/apk/res/com.androzic" android:title="@string/pref_application_title">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" xmlns:androzic="http://schemas.android.com/apk/res/com.androzic.gp" android:title="@string/pref_application_title">
     <Preference android:key="@string/pref_about" android:title="@string/pref_about_title" />
     <Preference android:key="@string/pref_donategoogle" android:title="@string/pref_donate_google_title" />
     <Preference android:key="@string/pref_donatepaypal" android:title="@string/pref_donate_paypal_title" />

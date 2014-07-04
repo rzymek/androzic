@@ -38,6 +38,7 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Window;
+import com.androzic.gp.R;
 import com.androzic.location.ILocationListener;
 import com.androzic.location.ILocationService;
 import com.androzic.location.LocationService;

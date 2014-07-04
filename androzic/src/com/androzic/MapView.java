@@ -51,6 +51,7 @@ import android.view.SurfaceView;
 import android.view.ViewConfiguration;
 import android.widget.Toast;
 
+import com.androzic.gp.R;
 import com.androzic.map.Map;
 import com.androzic.overlay.MapOverlay;
 import com.androzic.util.Geo;

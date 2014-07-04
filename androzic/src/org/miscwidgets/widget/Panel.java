@@ -1,6 +1,6 @@
 package org.miscwidgets.widget;
 
-import com.androzic.R;
+import com.androzic.gp.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.androzic.R;
+import com.androzic.gp.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;

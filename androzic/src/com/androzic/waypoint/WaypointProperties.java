@@ -53,7 +53,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.androzic.Androzic;
-import com.androzic.R;
+import com.androzic.gp.R;
 import com.androzic.data.Waypoint;
 import com.androzic.data.WaypointSet;
 import com.androzic.ui.ColorButton;

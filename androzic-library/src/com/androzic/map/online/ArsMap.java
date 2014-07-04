@@ -4,7 +4,6 @@ import pl.maps.tms.providers.Dimension;
 import pl.maps.tms.providers.GeoportalTopoProvider;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 
 import com.androzic.map.Tile;
 import com.androzic.map.online.geoportal.Coordinates;
@@ -28,12 +27,6 @@ public class ArsMap extends OnlineMap {
 		position.x -= (width / 2.0) / tileSize.width;
 		position.y -= (height/ 2.0) / tileSize.width;
 		
-		Paint red = new Paint();
-		red.setColor(0xffff0000);
-		Paint black = new Paint();
-		black.setColor(0xff000000);
-		c.drawLine(0, 0, width, height, red);
-
 		Dimension tileCount = new Dimension(0, 0);
 		tileCount.width = (width / tileSize.width) + 1;
 		tileCount.height = (height / tileSize.height) + 1;

@@ -38,13 +38,6 @@ public class PUWG92 implements Coordinates {
 		lon = latLon.getX();
 	}
 
-	public static void main(String[] args) {
-		
-		String value = "297 x 420 (A3)";
-		value= value.replaceAll(" |([(].*[)])",""); 
-		Object x = Arrays.asList(value.split("[^0-9]"));
-		System.out.println(x);
-	}
 	@Override
 	public double getLat() {
 		return lat;

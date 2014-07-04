@@ -23,14 +23,17 @@ package com.androzic.map.online;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import android.annotation.SuppressLint;
+import android.util.Log;
+
 import com.androzic.map.online.geoportal.Coordinates;
 import com.androzic.map.online.geoportal.Geoportal;
 import com.androzic.map.online.geoportal.LatLon;
+import com.androzic.map.online.geoportal.PUWG92;
 import com.androzic.map.online.geoportal.Position;
 import com.androzic.util.CSV;
 
-public class TileProvider
-{
+public class TileProvider {
 	public ArrayList<String> servers = new ArrayList<String>();
 	public String path;
 	public String name;
@@ -42,50 +45,56 @@ public class TileProvider
 	public boolean ellipsoid = false;
 	public int tileSize = 25000;
 	private int nextServer = 0;
-	//TODO Better initialization?
+	// TODO Better initialization?
 	private String locale = Locale.getDefault().toString();
-	
-	public String getTileUri(int x, int y, byte z)
-	{
+
+	public String getTileUri(int x, int y, byte z) {
 		String uri = path;
-        if (! servers.isEmpty())
-        {
-        	if (servers.size() <= nextServer)
-        		nextServer = 0;
-            uri = uri.replace("{$s}", servers.get(nextServer));
-        	nextServer++;
-        }
-    	if (inverseY)
-    		y = (int) (Math.pow(2, z) - 1 - y);
-    	uri = uri.replace("{$l}", locale);
-    	uri = uri.replace("{$z}", String.valueOf(z));
-    	uri = uri.replace("{$x}", String.valueOf(x));
-    	uri = uri.replace("{$y}", String.valueOf(y));
-    	if (uri.contains("{$q}"))
-    		uri = uri.replace("{$q}", encodeQuadTree(z, x, y));
-    	if (uri.contains("{$gp}"))
-    		uri = uri.replace("{$gp}", encodeGeoportal(z, x, y));
-    	if (uri.contains("{$g}") && secret != null)
-    	{
-    		int stringlen = (3 * x + y) & 7;
-    		uri = uri.replace("{$g}", secret.substring(0, stringlen));
-    	}
-    	
+		if (!servers.isEmpty()) {
+			if (servers.size() <= nextServer)
+				nextServer = 0;
+			uri = uri.replace("{$s}", servers.get(nextServer));
+			nextServer++;
+		}
+		if (inverseY)
+			y = (int) (Math.pow(2, z) - 1 - y);
+		uri = uri.replace("{$l}", locale);
+		uri = uri.replace("{$z}", String.valueOf(z));
+		uri = uri.replace("{$x}", String.valueOf(x));
+		uri = uri.replace("{$y}", String.valueOf(y));
+		if (uri.contains("{$q}"))
+			uri = uri.replace("{$q}", encodeQuadTree(z, x, y));
+		if (uri.contains("{$gp}"))
+			uri = uri.replace("{$gp}", encodeGeoportal(z, x, y));
+		if (uri.contains("{$g}") && secret != null) {
+			int stringlen = (3 * x + y) & 7;
+			uri = uri.replace("{$g}", secret.substring(0, stringlen));
+		}
 		return uri;
 	}
-	
-	private CharSequence encodeGeoportal(int z, int x, int y) {
-		int n = 2 << z;
-		double lon_deg = x / n * 360.0 - 180.0;
-		double lat_rad = Math.atan(Math.sinh(Math.PI * (1.0 - 2.0 * y/ n)));
-		double lat_deg = lat_rad * 180.0 / Math.PI;
-		Coordinates coordinates = new LatLon(lat_deg,lon_deg);
-		Position position = Geoportal.getTilePosition(coordinates, z);
-		return String.format("L%dX%dY%d", z, (int)position.x, (int)position.y);
+
+	static double tile2lon(int x, int z) {
+		return x / Math.pow(2.0, z) * 360.0 - 180;
 	}
 
-	public static TileProvider fromString(String s)
-	{
+	static double tile2lat(int y, int z) {
+		double n = Math.PI - (2.0 * Math.PI * y) / Math.pow(2.0, z);
+		return Math.toDegrees(Math.atan(Math.sinh(n)));
+	}
+
+	@SuppressLint("DefaultLocale")
+	private CharSequence encodeGeoportal(int z, int x, int y) {
+		if (inverseY)
+			y = (int) (Math.pow(2, z) - 1 - y);
+		Coordinates coordinates = new LatLon(
+				tile2lat(y, z), 
+				tile2lon(x, z));
+		Position position = Geoportal.getTilePosition(coordinates, z);
+		Log.i("POS", "x:"+x+" y:"+y+" z:"+z+" "+coordinates+" -> "+position+" "+new PUWG92(coordinates));
+		return String.format("L%dX%dY%d", z, (int) position.x, (int) position.y);
+	}
+
+	public static TileProvider fromString(String s) {
 		TileProvider provider = new TileProvider();
 		String[] fields = CSV.parseLine(s);
 		if (fields.length < 6)
@@ -96,51 +105,48 @@ public class TileProvider
 		provider.code = fields[1];
 		provider.path = fields[5];
 		provider.path = provider.path.replace("{comma}", ",");
-		try
-		{
+		try {
 			provider.minZoom = (byte) Integer.parseInt(fields[2]);
 			provider.maxZoom = (byte) Integer.parseInt(fields[3]);
-			if (! "".equals(fields[4]))
+			if (!"".equals(fields[4]))
 				provider.tileSize = Integer.parseInt(fields[4]);
-		}
-		catch (NumberFormatException e)
-		{
+		} catch (NumberFormatException e) {
 			return null;
 		}
-		if (fields.length > 6 && ! "".equals(fields[6]))
+		if (fields.length > 6 && !"".equals(fields[6]))
 			provider.servers.add(fields[6]);
-		if (fields.length > 7 && ! "".equals(fields[7]))
+		if (fields.length > 7 && !"".equals(fields[7]))
 			provider.servers.add(fields[7]);
-		if (fields.length > 8 && ! "".equals(fields[8]))
+		if (fields.length > 8 && !"".equals(fields[8]))
 			provider.servers.add(fields[8]);
-		if (fields.length > 9 && ! "".equals(fields[9]))
+		if (fields.length > 9 && !"".equals(fields[9]))
 			provider.servers.add(fields[9]);
 		provider.inverseY = fields.length > 10 && "yinverse".equals(fields[10]);
 		provider.ellipsoid = fields.length > 10 && "ellipsoid".equals(fields[10]);
-		if (fields.length > 11 && ! "".equals(fields[11]))
+		if (fields.length > 11 && !"".equals(fields[11]))
 			provider.secret = fields[11];
 
 		return provider;
 	}
-	
-	// WMS layers : http://whoots.mapwarper.net/tms/{$z}/{$x}/{$y}/ {layer}/{Path}
+
+	// WMS layers : http://whoots.mapwarper.net/tms/{$z}/{$x}/{$y}/
+	// {layer}/{Path}
 	// 1. Landsat http://onearth.jpl.nasa.gov/wms.cgi global_mosaic (NOT WORK)
 	// 2. Genshtab http://wms.latlon.org gshtab
 	private static final char[] NUM_CHAR = { '0', '1', '2', '3' };
 
 	/**
-	* See: http://msdn.microsoft.com/en-us/library/bb259689.aspx
-	* @param zoom
-	* @param tilex
-	* @param tiley
-	* @return quadtree encoded tile number
-	*
-	*/
-	private static String encodeQuadTree(int zoom, int tilex, int tiley)
-	{
+	 * See: http://msdn.microsoft.com/en-us/library/bb259689.aspx
+	 * 
+	 * @param zoom
+	 * @param tilex
+	 * @param tiley
+	 * @return quadtree encoded tile number
+	 * 
+	 */
+	private static String encodeQuadTree(int zoom, int tilex, int tiley) {
 		char[] tileNum = new char[zoom];
-		for (int i = zoom - 1; i >= 0; i--)
-		{
+		for (int i = zoom - 1; i >= 0; i--) {
 			// Binary encoding using ones for tilex and twos for tiley. if a bit
 			// is set in tilex and tiley we get a three.
 			int num = (tilex % 2) | ((tiley % 2) << 1);

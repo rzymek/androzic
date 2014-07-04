@@ -21,9 +21,9 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.androzic"
-    android:installLocation="auto"
-    android:versionCode="90"
-    android:versionName="1.7.6" >
+    android:installLocation="auto" 
+    android:versionCode="100"
+    android:versionName="1.8-gp" >
 
     <supports-screens
         android:anyDensity="true"

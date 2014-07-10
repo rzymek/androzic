@@ -1311,8 +1311,8 @@ public class Androzic extends BaseApplication
 			{
 				boolean s = currentMap == onlineMap;					
 				maps.removeMap(onlineMap);
-				byte zoom = (byte) PreferenceManager.getDefaultSharedPreferences(this).getInt(getString(R.string.pref_onlinemapscale), getResources().getInteger(R.integer.def_onlinemapscale));
-				onlineMap = new ArsMap(map, zoom);
+				byte zoom = (byte) PreferenceManager.getDefaultSharedPreferences(this).getInt(getString(R.string.pref_onlinemapscale), getResources().getInteger(R.integer.def_onlinemapscale));				
+				onlineMap = map.code.equals("gptopo") ? new ArsMap(map, zoom) : new OnlineMap(map, zoom);
 				maps.addMap(onlineMap);
 				if (s)
 					setMap(onlineMap);
@@ -1648,7 +1648,7 @@ public class Androzic extends BaseApplication
 		{
 			if (curProvider == null)
 				curProvider = onlineMaps.get(0);
-			onlineMap = new ArsMap(curProvider, zoom);
+			onlineMap = curProvider.code.equals("gptopo") ? new ArsMap(curProvider, zoom) : new OnlineMap(curProvider, zoom);
 			maps.addMap(onlineMap);
 		}
 		suitableMaps = maps.getMaps();

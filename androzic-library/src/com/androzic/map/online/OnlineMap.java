@@ -48,7 +48,7 @@ public class OnlineMap extends Map
 	protected byte srcZoom;
 	private byte defZoom;
 	
-	protected OnlineMap(TileProvider provider, byte z)
+	public OnlineMap(TileProvider provider, byte z)
 	{
 		super("http://...");
 		datum = "WGS84";
@@ -268,6 +268,7 @@ public class OnlineMap extends Map
 		}
 		ll[1] = dx * 360.0 / n - 180.0;		
 		
+		Log.i("XY",String.format("LatLonByXY %.2f %.2f %d.%d",ll[0],ll[1],x,y));
 		return true;
 	}
 
@@ -287,6 +288,7 @@ public class OnlineMap extends Map
 		{
 			xy[1] = (int) Math.floor((1 - (Math.log(Math.tan(Math.toRadians(lat)) + 1 / Math.cos(Math.toRadians(lat))) / Math.PI)) / 2 * n * TILE_HEIGHT);
 		}
+		Log.i("XY",String.format("XYByLatLon %.2f %.2f %d.%d",lat,lon,xy[0],xy[1]));
 		return true;
 	}
 
